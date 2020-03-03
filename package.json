@@ -1,0 +1,19 @@
+{
+  "name": "doclever-to-axios",
+  "version": "1.0.0",
+  "description": "根据 doclever 导出的 json文件生成相应的 axios 接口",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xietianfu/doclever-to-axios.git"
+  },
+  "author": "xietf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xietianfu/doclever-to-axios/issues"
+  },
+  "homepage": "https://github.com/xietianfu/doclever-to-axios#readme"
+}
