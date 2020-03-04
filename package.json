@@ -4,7 +4,8 @@
   "description": "根据 doclever 导出的 json文件生成相应的 axios 接口",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "global": "^4.4.0",
     "inquirer": "^7.0.5",
     "module-alias": "^2.2.2",
+    "ora": "^4.0.3",
     "shelljs": "^0.8.3"
   }
 }
