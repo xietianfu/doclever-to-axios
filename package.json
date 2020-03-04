@@ -24,6 +24,7 @@
     "global": "^4.4.0",
     "inquirer": "^7.0.5",
     "module-alias": "^2.2.2",
+    "ora": "^4.0.3",
     "shelljs": "^0.8.3"
   }
 }
