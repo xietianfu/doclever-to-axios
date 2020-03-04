@@ -1,1 +1,1 @@
-const fs = require("fs-extra");
+#!/usr/bin/env node
