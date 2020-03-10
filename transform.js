@@ -12,7 +12,7 @@ const fs = require("fs");
 
 // const file = file.resolve(__dirname, "工商理财企业推荐系统移动端.json");
 // 此处为接口地址
-const file = "/Users/mahong/Downloads/手机快速取证平台.json";
+const file = "test.json";
 // var file = './接口测试.json';
 
 const typeList = {
@@ -21,7 +21,7 @@ const typeList = {
   2: "Boolean",
   3: "Object[]",
   4: "Object",
-  5: "Mixed",
+  5: "Mixed"
 };
 
 const innerTypeList = {
@@ -30,7 +30,7 @@ const innerTypeList = {
   2: "Boolean",
   3: "Array",
   4: "Object",
-  5: "Mixed",
+  5: "Mixed"
 };
 
 /**
@@ -68,10 +68,10 @@ fs.readFile(file, "utf8", (err, data) => {
   // 取得api接口数据
   const apiData = JSON.parse(data).data;
   // 删除回收站
-  apiData.filter((item) => item.name !== "#回收站");
+  apiData.filter(item => item.name !== "#回收站");
 
   let out = fs.createWriteStream(path.resolve(workPath, "api.js"), {
-    encoding: "utf8",
+    encoding: "utf8"
   });
   // // 定义api接口
   out.write("// 引入模块 \n import { axios } from './index'; \n");
@@ -116,7 +116,7 @@ fs.readFile(file, "utf8", (err, data) => {
         break;
     }
     // 过滤为空字段
-    query = query.filter((item) => item.name !== "");
+    query = query.filter(item => item.name !== "");
     // 构建请求参数注释
     const annotation = getQueryNoteList(query);
     // 写入函数注释
@@ -125,18 +125,18 @@ fs.readFile(file, "utf8", (err, data) => {
         `* ${method}--${name}\n` +
         "* @param {Object} params -请求对象 \n" +
         annotation +
-        "*/\n",
+        "*/\n"
     );
     // 写入函数;
     out.write(
       `apiFetch.${camelize(
-        `${method.toLowerCase()}_${funName}`,
-      )} = (params={}) => {\n ${funStr} \n}; \n`,
+        `${method.toLowerCase()}_${funName}`
+      )} = (params={}) => {\n ${funStr} \n}; \n`
     );
   }
 
   function writeTitle(apiData = []) {
-    apiData.forEach((item) => {
+    apiData.forEach(item => {
       // 有url说明对象时一个接口，不是一个文件夹层级
       if (item.url) {
         writeApi(item);

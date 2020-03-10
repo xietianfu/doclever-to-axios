@@ -1,7 +1,11 @@
 const JSON5 = require("json5");
 const fs = require("fs-extra");
+const { writeCell } = require("../constants/mackFun");
+const paths = require("../constants/paths");
 
-let apiObj = fs.readJSONSync("../天虎云商大数据.json");
+console.log(paths, 123);
+
+let apiObj = fs.readJSONSync(paths.jsonPath);
 
 function getApiData(obj) {
   return obj.data;
@@ -14,5 +18,6 @@ function removeRecycleBin(apiData) {
 const apiData = removeRecycleBin(getApiData(apiObj));
 
 module.exports = {
-  apiData
+  apiData,
+  buildApi: () => writeCell(apiData)
 };

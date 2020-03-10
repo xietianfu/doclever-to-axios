@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const program = require("commander");
+const { buildApi } = require("./transform");
+
 program.version("1.0.0");
 
 program
@@ -22,6 +24,7 @@ program
   .description("执行接口生成")
   .action(() => {
     console.log("begin");
+    buildApi();
   });
 
 program

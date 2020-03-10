@@ -105,3 +105,35 @@ function getQuery(method, param) {
       break;
   }
 }
+
+/**
+ * 生成接口
+ * @param {object} api 接口数据
+ */
+function writeApi(api) {
+  // 写入api接口部分
+  const { name, remark, url, method, param } = api;
+  console.log(api);
+  let newName = url.split("/");
+}
+
+function writeCell(apiData = []) {
+  // apiData.forEach(item => {
+  //   // 有url说明对象时一个接口，不是一个文件夹层级
+  //   if (item.url) {
+  //     writeApi(item);
+  //   } else {
+  //     // 写入页面标题部分
+  //     // out.write(`/* ${item.name} */ \n`);
+  //     /* 继续向下处理 */
+  //     if (item.data) {
+  //       writeCell(item.data);
+  //     }
+  //   }
+  // });
+  // console.log(apiData);
+}
+
+module.exports = {
+  writeCell
+};
