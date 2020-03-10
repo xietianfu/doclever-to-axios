@@ -2,6 +2,8 @@
 
 const program = require("commander");
 const { buildApi } = require("./transform");
+const shell = require("shelljs");
+shell.config.silent = true;
 
 program.version("1.0.0");
 
@@ -23,7 +25,6 @@ program
   .command("start")
   .description("执行接口生成")
   .action(() => {
-    console.log("begin");
     buildApi();
   });
 

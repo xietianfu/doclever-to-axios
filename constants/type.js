@@ -8,5 +8,6 @@ const typeList = {
 };
 
 module.exports = {
-  typeList
+  typeList,
+  configName
 };
