@@ -83,7 +83,7 @@ async function setDownPath() {
     }
   });
   globalConfigData.downPath = result;
-  fs.writeJSON(paths.root);
+  fs.writeJSON(paths.globalConfig, result, { spaces: "\n" });
   return result;
 }
 
