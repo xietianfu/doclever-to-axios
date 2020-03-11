@@ -16,9 +16,9 @@ function getConfig() {
   }
 
   if (!filePath.stderr) {
-    let configFile = fs.readJSONSync(configName);
+    let dtaConfigData = fs.readJSONSync(configName);
     shell.cd(runPath);
-    return configFile;
+    return dtaConfigData;
   } else {
     shell.cd(runPath);
     console.log(filePath.stderr);

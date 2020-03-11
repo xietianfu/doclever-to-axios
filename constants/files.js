@@ -16,9 +16,9 @@ function getConfig() {
   }
 
   if (!filePath.stderr) {
-    let configFile = fs.readJSONSync(configName);
+    let dtaConfigData = fs.readJSONSync(configName);
     shell.cd(runPath);
-    return configFile;
+    return dtaConfigData;
   } else {
     shell.cd(runPath);
     console.log(filePath.stderr);
@@ -30,8 +30,8 @@ function getApiFile() {
   const runPath = shell.pwd().stdout;
 
   let file = undefined;
-  if (configFile) {
-    const { downPath, name } = configFile;
+  if (dtaConfigData) {
+    const { downPath, name } = dtaConfigData;
     shell.cd(downPath);
     let results = shell.ls("-l", `./${name}*[(]?[0-9]*[)].json`);
     if (!results.stderr) {
@@ -49,12 +49,14 @@ function getApiFile() {
   return file;
 }
 
-const configFile = getConfig();
+const dtaConfigData = getConfig();
 const apiFile = getApiFile();
-const globalFile = fs.readJSONSync(path.join(paths.root, "globalConfig.json"));
+const globalConfigData = fs.readJSONSync(
+  path.join(paths.root, "globalConfig.json")
+);
 
 module.exports = {
-  configFile,
+  dtaConfigData,
   apiFile,
-  globalFile
+  globalConfigData
 };

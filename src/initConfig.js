@@ -18,7 +18,7 @@ async function initConfig() {
       type: "input",
       name: "downPath",
       message: "需要执行的api文件的存放路径",
-      default: files.globalFile.downPath
+      default: files.globalConfigData.downPath
     },
     {
       type: "input",
@@ -61,6 +61,33 @@ async function initConfig() {
   return result;
 }
 
+async function setDownPath() {
+  let globalConfigData = { ...files.globalConfigData };
+
+  const result = await inquirer.prompt({
+    type: "input",
+    name: "downPath",
+    message: "设置全局的下载地址: ",
+    validate: function(input) {
+      // Declare function as asynchronous, and save the done callback
+      var done = this.async();
+
+      // Do async stuff
+      if (!input.trim()) {
+        // Pass the return value in the done callback
+        done("全局地址不建议设置为空");
+        return;
+      }
+      // Pass the return value in the done callback
+      done(null, true);
+    }
+  });
+  globalConfigData.downPath = result;
+  fs.writeJSON(paths.root);
+  return result;
+}
+
 module.exports = {
-  initConfig
+  initConfig,
+  setDownPath
 };

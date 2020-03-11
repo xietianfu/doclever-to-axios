@@ -4,7 +4,6 @@ const { writeCell } = require("../constants/mackFun");
 const paths = require("../constants/paths");
 const files = require("../constants/files");
 
-// console.log(paths, "paths");
 console.log(files, "files");
 
 function getApiData(obj) {
@@ -20,5 +19,4 @@ function removeRecycleBin(apiData) {
 module.exports = {
   // apiData
   // buildApi: () => writeCell(apiData)
-  a: 1
 };

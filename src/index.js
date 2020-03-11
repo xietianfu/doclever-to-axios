@@ -18,10 +18,11 @@ program
   });
 
 program
-  .command("setDir <path>")
-  .description("设置读取接口文件所在的目录,不填写为当前目录")
+  .command("setDir")
+  .description("设置读取接口文件所在的目录")
   .action(path => {
-    console.log(`设置地址为${path}`);
+    const { setDownPath } = require("./initConfig");
+    setDownPath();
   });
 
 program
@@ -29,7 +30,6 @@ program
   .description("执行接口生成")
   .action(() => {
     const transform = require("./transform");
-
     // buildApi();
   });
 

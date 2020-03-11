@@ -12,7 +12,7 @@ async function initConfig() {
   //     type: "input",
   //     name: "downPath",
   //     message: "需要执行的api文件的存放路径",
-  //     default: files.globalFile.downPath
+  //     default: files.globalConfigData.downPath
   //   },
   //   {
   //     type: "input",
