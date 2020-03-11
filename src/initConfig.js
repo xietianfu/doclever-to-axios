@@ -55,7 +55,7 @@ async function initConfig() {
       default: "api.js"
     }
   ]);
-  fs.writeJSON(path.join(paths.runPath, "dtaConfig-test.json"), result, {
+  fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), result, {
     spaces: "\n"
   });
   return result;
