@@ -7,6 +7,26 @@
   resolved "https://registry.npm.taobao.org/@types/color-name/download/@types/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha1-HBJhu+qhCoBVu8XYq4S3sq/IRqA=
 
+"@types/inquirer@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.npm.taobao.org/@types/inquirer/download/@types/inquirer-6.5.0.tgz#b83b0bf30b88b8be7246d40e51d32fe9d10e09be"
+  integrity sha1-uDsL8wuIuL5yRtQOUdMv6dEOCb4=
+  dependencies:
+    "@types/through" "*"
+    rxjs "^6.4.0"
+
+"@types/node@*":
+  version "13.9.0"
+  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-13.9.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-13.9.0.tgz#5b6ee7a77faacddd7de719017d0bc12f52f81589"
+  integrity sha1-W27np3+qzd195xkBfQvBL1L4FYk=
+
+"@types/through@*":
+  version "0.0.30"
+  resolved "https://registry.npm.taobao.org/@types/through/download/@types/through-0.0.30.tgz#e0e42ce77e897bd6aead6f6ea62aeb135b8a3895"
+  integrity sha1-4OQs536Je9aurW9upirrE1uKOJU=
+  dependencies:
+    "@types/node" "*"
+
 ansi-escapes@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/ansi-escapes/download/ansi-escapes-2.0.0.tgz?cache=0&sync_timestamp=1583072804444&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fansi-escapes%2Fdownload%2Fansi-escapes-2.0.0.tgz#5bae52be424878dd9783e8910e3fc2922e83c81b"
@@ -159,6 +179,11 @@ defaults@^1.0.3:
   dependencies:
     clone "^1.0.2"
 
+directory-tree@^2.2.3:
+  version "2.2.4"
+  resolved "https://registry.npm.taobao.org/directory-tree/download/directory-tree-2.2.4.tgz#6d5bd7d82e48378e256a1e87b678a43c50076e2e"
+  integrity sha1-bVvX2C5IN44lah6HtnikPFAHbi4=
+
 dom-walk@^0.1.0:
   version "0.1.1"
   resolved "https://registry.npm.taobao.org/dom-walk/download/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
@@ -291,6 +316,18 @@ inquirer-autocomplete-prompt@^0.12.2:
     inquirer "3.2.0"
     run-async "^2.3.0"
 
+inquirer-file-tree-selection-prompt@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/inquirer-file-tree-selection-prompt/download/inquirer-file-tree-selection-prompt-1.0.4.tgz#f99f5c52a020d3c8f6eb7887e368363e70c7095a"
+  integrity sha1-+Z9cUqAg08j263iH42g2PnDHCVo=
+  dependencies:
+    chalk "^2.4.2"
+    cli-cursor "^3.1.0"
+    directory-tree "^2.2.3"
+    figures "^3.0.0"
+    lodash "^4.17.11"
+    rxjs "^6.5.2"
+
 inquirer-fuzzy-path@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/inquirer-fuzzy-path/download/inquirer-fuzzy-path-2.2.0.tgz#97015726645618615199c9c4fe9c9d91930519aa"
@@ -399,7 +436,7 @@ jsonfile@^4.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-lodash@^4.17.15, lodash@^4.3.0:
+lodash@^4.17.11, lodash@^4.17.15, lodash@^4.3.0:
   version "4.17.15"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
@@ -566,7 +603,7 @@ rxjs@^5.5.2:
   dependencies:
     symbol-observable "1.0.1"
 
-rxjs@^6.5.3:
+rxjs@^6.4.0, rxjs@^6.5.2, rxjs@^6.5.3:
   version "6.5.4"
   resolved "https://registry.npm.taobao.org/rxjs/download/rxjs-6.5.4.tgz?cache=0&sync_timestamp=1577464349427&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frxjs%2Fdownload%2Frxjs-6.5.4.tgz#e0777fe0d184cec7872df147f303572d414e211c"
   integrity sha1-4Hd/4NGEzseHLfFH8wNXLUFOIRw=

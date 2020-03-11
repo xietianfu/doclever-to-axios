@@ -21,11 +21,13 @@
   },
   "homepage": "https://github.com/xietianfu/doclever-to-axios#readme",
   "dependencies": {
+    "@types/inquirer": "^6.5.0",
     "chalk": "^3.0.0",
     "commander": "^4.1.1",
     "fs-extra": "^8.1.0",
     "global": "^4.4.0",
     "inquirer": "^7.0.5",
+    "inquirer-file-tree-selection-prompt": "^1.0.4",
     "inquirer-fuzzy-path": "^2.2.0",
     "json5": "^2.1.1",
     "module-alias": "^2.2.2",

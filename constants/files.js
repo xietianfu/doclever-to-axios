@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs-extra");
 const shell = require("shelljs");
+const paths = require("./paths");
 
 const configName = "dtaConfig.json";
 shell.config.silent = true;
@@ -33,14 +34,13 @@ function getApiFile() {
     const { downPath, name } = configFile;
     shell.cd(downPath);
     let results = shell.ls("-l", `./${name}*[(]?[0-9]*[)].json`);
-    console.log(results);
     if (!results.stderr) {
       const detialFile = results.reduce((preFile, curFile) =>
         preFile.birthtimeMs > curFile.birthtimeMs ? preFile : curFile
       );
       file = fs.readJSONSync(path.resolve(downPath, detialFile.name));
     } else {
-      console.log(results.stderr);
+      // console.log(results.stderr);
     }
   } else {
     console.log("err");
@@ -51,8 +51,10 @@ function getApiFile() {
 
 const configFile = getConfig();
 const apiFile = getApiFile();
+const globalFile = fs.readJSONSync(path.join(paths.root, "globalConfig.json"));
 
 module.exports = {
   configFile,
-  apiFile
+  apiFile,
+  globalFile
 };

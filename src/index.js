@@ -2,7 +2,6 @@
 
 const program = require("commander");
 const shell = require("shelljs");
-const transform = require("./transform");
 
 shell.config.silent = true;
 
@@ -12,7 +11,10 @@ program
   .command("init")
   .description("生成基础配置文件")
   .action(() => {
+    const { initConfig } = require("./initConfig");
+
     console.log('"初始化文件"');
+    initConfig();
   });
 
 program
@@ -26,6 +28,8 @@ program
   .command("start")
   .description("执行接口生成")
   .action(() => {
+    const transform = require("./transform");
+
     // buildApi();
   });
 
