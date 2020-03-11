@@ -32,6 +32,5 @@ module.exports = {
   root: appDirectory,
   constants: resolveApp("constants"),
   src: resolveApp("src"),
-  jsonPath: resolveApp("test.json"),
   runPath: shell.pwd().stdout
 };

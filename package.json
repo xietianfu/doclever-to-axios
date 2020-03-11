@@ -8,7 +8,7 @@
     "start": "node ./index.js"
   },
   "bin": {
-    "dta": "/src/index.js"
+    "dta": "src/index.js"
   },
   "repository": {
     "type": "git",

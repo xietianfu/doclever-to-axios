@@ -20,26 +20,28 @@ function getConfig() {
     return configFile;
   } else {
     shell.cd(runPath);
-    console.log(filePath.stderr, "112");
+    console.log(filePath.stderr);
     return undefined;
   }
-
-  // console.log(fs.readJSONSync(filePath));
 }
 
 function getApiFile() {
   const runPath = shell.pwd().stdout;
-  const configFile = getConfig();
+
   let file = undefined;
   if (configFile) {
     const { downPath, name } = configFile;
     shell.cd(downPath);
-    let result = shell
-      .ls("-l", `./${name}*.json`)
-      .reduce((preFile, curFile) =>
+    let results = shell.ls("-l", `./${name}*[(]?[0-9]*[)].json`);
+    console.log(results);
+    if (!results.stderr) {
+      const detialFile = results.reduce((preFile, curFile) =>
         preFile.birthtimeMs > curFile.birthtimeMs ? preFile : curFile
       );
-    file = fs.readJSONSync(result.name);
+      file = fs.readJSONSync(path.resolve(downPath, detialFile.name));
+    } else {
+      console.log(results.stderr);
+    }
   } else {
     console.log("err");
   }
@@ -47,9 +49,10 @@ function getApiFile() {
   return file;
 }
 
-getApiFile();
+const configFile = getConfig();
+const apiFile = getApiFile();
 
 module.exports = {
-  configFile: getConfig(),
-  apiFile: getApiFile()
+  configFile,
+  apiFile
 };

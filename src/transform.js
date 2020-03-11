@@ -7,8 +7,6 @@ const files = require("../constants/files");
 // console.log(paths, "paths");
 console.log(files, "files");
 
-let apiObj = fs.readJSONSync(paths.jsonPath);
-
 function getApiData(obj) {
   return obj.data;
 }
@@ -17,9 +15,10 @@ function removeRecycleBin(apiData) {
   return apiData.filter(item => item.name !== "#回收站");
 }
 
-const apiData = removeRecycleBin(getApiData(apiObj));
+// const apiData = removeRecycleBin(getApiData(apiObj));
 
 module.exports = {
-  apiData,
-  buildApi: () => writeCell(apiData)
+  // apiData
+  // buildApi: () => writeCell(apiData)
+  a: 1
 };
