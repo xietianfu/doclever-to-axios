@@ -40,4 +40,15 @@ program
     console.log("view");
   });
 
+program
+  .command("config <file>")
+  .description("查看文件的各种配置")
+  .action(file => {
+    const files = require("../constants/files");
+    const paths = require("../constants/paths");
+    const type = require("../constants/type");
+    const index = require("../constants/index");
+    console.log({ files, paths, type, index }[file]);
+  });
+
 program.parse(process.argv);

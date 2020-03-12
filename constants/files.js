@@ -51,9 +51,11 @@ function getApiFile() {
 
 const dtaConfigData = getConfig();
 const apiFile = getApiFile();
-const globalConfigData = fs.readJSONSync(
-  path.join(paths.root, "globalConfig.json")
-);
+const globalConfigData = () => {
+  const globalConfig = path.join(paths.root, "globalConfig.json");
+  console.log(globalConfig, "123");
+  return globalConfigData;
+};
 
 module.exports = {
   dtaConfigData,

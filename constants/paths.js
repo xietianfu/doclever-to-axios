@@ -23,21 +23,21 @@ function getConfigPath() {
   }
 }
 
-const apiPath = () => {
-  if (dtaConfigData) {
-    return dtaConfigData;
-  } else {
-    return undefined;
-  }
-};
+// const apiPath = () => {
+//   if (dtaConfigData) {
+//     return dtaConfigData;
+//   } else {
+//     return undefined;
+//   }
+// };
 
-console.log(apiPath);
+// console.log(apiPath);
 
 module.exports = {
   root: appDirectory,
   constants: resolveApp("constants"),
   src: resolveApp("src"),
   runPath: shell.pwd().stdout,
-  globalConfig: resolveApp("globalConfig.json"),
-  apiPath
+  globalConfig: resolveApp("globalConfig.json")
+  // apiPath
 };
