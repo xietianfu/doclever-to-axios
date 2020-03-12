@@ -58,33 +58,33 @@ async function initConfig() {
   return result;
 }
 
-// async function setDownPath() {
-//   let globalConfigData = { ...files.globalConfigData };
+async function setDownPath() {
+  let globalConfigData = { ...files.globalConfigData };
 
-//   const result = await inquirer.prompt({
-//     type: "input",
-//     name: "downPath",
-//     message: "设置全局的下载地址: ",
-//     validate: function(input) {
-//       // Declare function as asynchronous, and save the done callback
-//       var done = this.async();
+  const result = await inquirer.prompt({
+    type: "input",
+    name: "downPath",
+    message: "设置全局的下载地址: ",
+    validate: function(input) {
+      // Declare function as asynchronous, and save the done callback
+      var done = this.async();
 
-//       // Do async stuff
-//       if (!input.trim()) {
-//         // Pass the return value in the done callback
-//         done("全局地址不建议设置为空");
-//         return;
-//       }
-//       // Pass the return value in the done callback
-//       done(null, true);
-//     }
-//   });
-//   globalConfigData.downPath = result;
-//   fs.writeJSON(paths.globalConfig, result, { spaces: "\n" });
-//   return result;
-// }
+      // Do async stuff
+      if (!input.trim()) {
+        // Pass the return value in the done callback
+        done("全局地址不建议设置为空");
+        return;
+      }
+      // Pass the return value in the done callback
+      done(null, true);
+    }
+  });
+  globalConfigData.downPath = result;
+  fs.writeJSON(paths.globalConfig, result, { spaces: "\n" });
+  return result;
+}
 
 module.exports = {
-  initConfig
-  // setDownPath
+  initConfig,
+  setDownPath
 };

@@ -1,12 +1,11 @@
 {
+  "downPath": "/Users/xietf/Downloads",
 
-"downPath": "/Users/mahong/Downloads",
+  "name": "五粮液测试",
 
-"name": "五粮液测试",
+  "axiosFile": "/Users/xietf/code/project/doclever-to-axios/src/index.js",
 
-"axiosFile": "/Users/xietf/code/project/doclever-to-axios/src/index.js",
+  "outPath": "/Users/xietf/code/project/doclever-to-axios",
 
-"outPath": "/Users/xietf/code/project/doclever-to-axios",
-
-"outName": "api.js"
+  "outName": "api.js"
 }
