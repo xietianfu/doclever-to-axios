@@ -29,7 +29,7 @@ function getConfig() {
   }
 }
 
-function getApiFile() {
+function getApiFileData() {
   const runPath = shell.pwd().stdout;
 
   let file = undefined;
@@ -53,11 +53,11 @@ function getApiFile() {
 }
 
 const dtaConfigData = getConfig();
-const apiFile = getApiFile();
+const apiFileData = getApiFileData();
 
 module.exports = {
   dtaConfigData,
-  apiFile,
+  apiFileData,
   // note: 一旦出现某个模块被"循环加载"，就只输出已经执行的部分，还未执行的部分不会输出。所以获取不能使用`paths.root+....`
   globalConfigData: fs.readJSONSync(resolveApp("globalConfig.json"))
 };

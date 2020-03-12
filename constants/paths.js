@@ -11,21 +11,26 @@ function getConfigPath(name) {
   return dtaConfigData[name];
 }
 
-const getApiPath = () => {
-  if (dtaConfigData) {
-    return dtaConfigData.downPath;
-  } else {
-    return undefined;
-  }
-};
+function getMeetApiFiles() {
+  const { downPath, name } = dtaConfigData;
+}
+
+const apiPath = getConfigPath("downPath");
+const outPath = getConfigPath("outPath");
+const constants = resolveApp("constants");
+const src = resolveApp("src");
+const runPath = shell.pwd().stdout;
+const globalConfig = resolveApp("globalConfig.json");
+const globalDownPath = fs.readJSONSync(resolveApp("globalConfig.json"))
+  .downPath;
 
 module.exports = {
   root: appDirectory,
-  constants: resolveApp("constants"),
-  src: resolveApp("src"),
-  runPath: shell.pwd().stdout,
-  globalConfig: resolveApp("globalConfig.json"),
-  globalDownPath: fs.readJSONSync(resolveApp("globalConfig.json")).downPath,
-  apiPath: getConfigPath("downPath"),
-  outPath: getConfigPath("outPath")
+  constants,
+  src,
+  runPath,
+  globalConfig,
+  globalDownPath,
+  apiPath,
+  outPath
 };
