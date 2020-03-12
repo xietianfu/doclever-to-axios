@@ -2,7 +2,8 @@ const path = require("path");
 const fs = require("fs-extra");
 const shell = require("shelljs");
 const { configName } = require("./type");
-const { dtaConfigData } = require("./files");
+const files = require("./files");
+// console.log(dtaConfigData);
 /**  项目根目录 */
 const appDirectory = path.join(process.mainModule.path, "..");
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);

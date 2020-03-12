@@ -4,9 +4,9 @@
 
 "name": "五粮液测试",
 
-"axiosFile": "/Users/mahong/code/learn/doclever-to-axios/src/index.js",
+"axiosFile": "/Users/xietf/code/project/doclever-to-axios/src/index.js",
 
-"outPath": "/Users/mahong/code/learn/doclever-to-axios",
+"outPath": "/Users/xietf/code/project/doclever-to-axios",
 
-"outName": "wuliangye.json"
+"outName": "api.js"
 }

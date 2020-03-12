@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./index.js"
+    "init": "dta init",
+    "setDir": "dta setDir",
+    "start": "dta start"
   },
   "bin": {
     "dta": "src/index.js"
@@ -27,7 +29,6 @@
     "fs-extra": "^8.1.0",
     "global": "^4.4.0",
     "inquirer": "^7.0.5",
-    "inquirer-file-tree-selection-prompt": "^1.0.4",
     "inquirer-fuzzy-path": "^2.2.0",
     "json5": "^2.1.1",
     "module-alias": "^2.2.2",

@@ -12,8 +12,6 @@ program
   .description("生成基础配置文件")
   .action(() => {
     const { initConfig } = require("./initConfig");
-
-    console.log('"初始化文件"');
     initConfig();
   });
 
