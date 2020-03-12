@@ -1,10 +1,13 @@
 const path = require("path");
 const fs = require("fs-extra");
 const shell = require("shelljs");
-const paths = require("./paths");
 const { configName } = require("./type");
 
 shell.config.silent = true;
+
+/**  项目根目录 */
+const appDirectory = path.join(process.mainModule.path, "..");
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 function getConfig() {
   const runPath = shell.pwd().stdout;
@@ -51,14 +54,10 @@ function getApiFile() {
 
 const dtaConfigData = getConfig();
 const apiFile = getApiFile();
-const globalConfigData = () => {
-  const globalConfig = path.join(paths.root, "globalConfig.json");
-  console.log(globalConfig, "123");
-  return globalConfigData;
-};
 
 module.exports = {
   dtaConfigData,
   apiFile,
-  globalConfigData
+  // note: 一旦出现某个模块被"循环加载"，就只输出已经执行的部分，还未执行的部分不会输出。所以获取不能使用`paths.root+....`
+  globalConfigData: fs.readJSONSync(resolveApp("globalConfig.json"))
 };
