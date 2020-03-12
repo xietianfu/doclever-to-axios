@@ -2,8 +2,8 @@ const path = require("path");
 const fs = require("fs-extra");
 const shell = require("shelljs");
 const paths = require("./paths");
+const { configName } = require("./type");
 
-const configName = "dtaConfig.json";
 shell.config.silent = true;
 
 function getConfig() {
@@ -33,7 +33,7 @@ function getApiFile() {
   if (dtaConfigData) {
     const { downPath, name } = dtaConfigData;
     shell.cd(downPath);
-    let results = shell.ls("-l", `./${name}*[(]?[0-9]*[)].json`);
+    let results = shell.ls("-l", `./${name}*.json`);
     if (!results.stderr) {
       const detialFile = results.reduce((preFile, curFile) =>
         preFile.birthtimeMs > curFile.birthtimeMs ? preFile : curFile

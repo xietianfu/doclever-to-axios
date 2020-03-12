@@ -1,5 +1,3 @@
-console.log(process.mainModule.path);
-
 const path = require("path");
 
 const workPath = process.mainModule.path;
@@ -13,7 +11,6 @@ const fs = require("fs");
 // const file = file.resolve(__dirname, "工商理财企业推荐系统移动端.json");
 // 此处为接口地址
 const file = "test.json";
-// var file = './接口测试.json';
 
 const typeList = {
   0: "String",

@@ -1,7 +1,12 @@
 {
-  "downPath": "/Users/mahong/Downloads",
-  "name": "tes",
-  "axiosFile": "",
-  "outPath": "",
-  "outName": ""
+
+"downPath": "/Users/mahong/Downloads",
+
+"name": "五粮液测试",
+
+"axiosFile": "/Users/mahong/code/learn/doclever-to-axios/src/index.js",
+
+"outPath": "/Users/mahong/code/learn/doclever-to-axios",
+
+"outName": "wuliangye.json"
 }
