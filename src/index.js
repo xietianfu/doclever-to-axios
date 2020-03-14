@@ -2,7 +2,10 @@
 
 const program = require("commander");
 const shell = require("shelljs");
-
+const files = require("../constants/files");
+const paths = require("../constants/paths");
+const type = require("../constants/type");
+const index = require("../constants/index");
 shell.config.silent = true;
 
 program.version("1.0.0");
@@ -28,7 +31,11 @@ program
   .description("执行接口生成")
   .action(() => {
     const transform = require("./transform");
-    // buildApi();
+    transform.build({
+      api: files.apiFileData,
+      outPath: paths.outPath,
+      outName: files.dtaConfigData.outName
+    });
   });
 
 program
@@ -42,10 +49,6 @@ program
   .command("config <file>")
   .description("查看文件的各种配置")
   .action(file => {
-    const files = require("../constants/files");
-    const paths = require("../constants/paths");
-    const type = require("../constants/type");
-    const index = require("../constants/index");
     console.log({ files, paths, type, index }[file]);
   });
 

@@ -6,9 +6,20 @@ const typeList = {
   4: "Object",
   5: "Mixed"
 };
+
+const innerTypeList = {
+  0: "String",
+  1: "Number",
+  2: "Boolean",
+  3: "Array",
+  4: "Object",
+  5: "Mixed"
+};
+
 const configName = "dtaConfig.json";
 
 module.exports = {
   typeList,
-  configName
+  configName,
+  innerTypeList
 };
