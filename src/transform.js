@@ -63,9 +63,9 @@ function getQueryNoteList(params, name = "params", result = "") {
 
 function build({ api, outPath, outName, cutOff = "" }) {
   // 取得api接口数据
-  const apiData = api.data;
+  let apiData = api.data;
   // 删除回收站
-  apiData.filter(item => item.name !== "#回收站");
+  apiData = apiData.filter(item => item.name !== "#回收站");
 
   let out = fs.createWriteStream(path.resolve(outPath, outName), {
     encoding: "utf8"
