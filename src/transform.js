@@ -61,7 +61,7 @@ function getQueryNoteList(params, name = "params", result = "") {
   return data;
 }
 
-function build({ api, outPath, outName, cutOff = "api" }) {
+function build({ api, outPath, outName, cutOff = "" }) {
   // 取得api接口数据
   const apiData = api.data;
   // 删除回收站
@@ -83,7 +83,9 @@ function build({ api, outPath, outName, cutOff = "api" }) {
   function writeApi(api) {
     // 写入api接口部分
     let { name, remark, url = "", method, param } = api;
-    url = url.replace(cutOff, "");
+    if (cutOff) {
+      url = url.replace(cutOff, "");
+    }
     // todo: 完成注释部分
     // 请求参数
     let query = [];
@@ -115,7 +117,6 @@ function build({ api, outPath, outName, cutOff = "api" }) {
         annotation +
         "*/\n"
     );
-    console.log(camelize(url));
     out.write(
       `apiFetch.${camelize(
         `${method.toLowerCase()}_${url}`

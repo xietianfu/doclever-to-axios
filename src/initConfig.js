@@ -49,6 +49,11 @@ async function initConfig() {
       name: "outName",
       message: "自定义的生成的api文件名称",
       default: "api.js"
+    },
+    {
+      type: "input",
+      name: "cutOff",
+      message: "忽略的url前缀"
     }
   ]);
   fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), result, {
