@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 const fs = require("fs-extra");
 const paths = require("../constants/paths");
 const files = require("../constants/files");
-const shell = require("shelljs");
 const path = require("path");
 
 inquirer.registerPrompt("fuzzypath", require("inquirer-fuzzy-path"));

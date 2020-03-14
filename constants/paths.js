@@ -8,7 +8,11 @@ const appDirectory = path.join(process.mainModule.path, "..");
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 function getConfigPath(name) {
-  return dtaConfigData[name];
+  if (dtaConfigData) {
+    return dtaConfigData[name];
+  } else {
+    return undefined;
+  }
 }
 
 /**
@@ -35,11 +39,7 @@ function getMeetApiFiles() {
         }
       });
       apiFiles = apiFiles.map(item => item.name);
-    } else {
-      console.log(results.stderr);
     }
-  } else {
-    console.log("err");
   }
 
   shell.cd(runPath);

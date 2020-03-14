@@ -9,9 +9,12 @@ shell.config.silent = true;
 const appDirectory = path.join(process.mainModule.path, "..");
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
+/**
+ * 获取项目的配置文件
+ * @returns {object | undefined}
+ */
 function getConfig() {
   const runPath = shell.pwd().stdout;
-  // console.log(shell.ls("dtaConfig.json").stdout);
   let filePath = shell.ls(configName);
   while (filePath.stderr && shell.pwd().stdout !== "/") {
     shell.cd("..");
@@ -24,11 +27,14 @@ function getConfig() {
     return dtaConfigData;
   } else {
     shell.cd(runPath);
-    console.log(filePath.stderr);
     return undefined;
   }
 }
 
+/**
+ * 获取接口文件
+ * @returns {Object}
+ */
 function getApiFileData() {
   const runPath = shell.pwd().stdout;
 
@@ -41,12 +47,15 @@ function getApiFileData() {
       const detialFile = results.reduce((preFile, curFile) =>
         preFile.birthtimeMs > curFile.birthtimeMs ? preFile : curFile
       );
-      file = fs.readJSONSync(path.resolve(downPath, detialFile.name));
+      // note: 如果获取的api文件为空这里会报错,需要添加throws: false
+      file = fs.readJSONSync(path.resolve(downPath, detialFile.name), {
+        throws: false
+      });
     } else {
       // console.log(results.stderr);
     }
   } else {
-    console.log("err");
+    // console.log("err");
   }
   shell.cd(runPath);
   return file;
