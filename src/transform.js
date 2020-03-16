@@ -83,8 +83,10 @@ function build({ api, outPath, outName, cutOff = "" }) {
   function writeApi(api) {
     // 写入api接口部分
     let { name, remark, url = "", method, param } = api;
+    let cutUrl = url;
     if (cutOff) {
-      url = url.replace(cutOff, "");
+      const _cutOff = cutOff[cutOff.length - 1] === "/" ? cutOff : cutOff + "/";
+      cutUrl = cutUrl.replace(_cutOff, "");
     }
     // todo: 完成注释部分
     // 请求参数
@@ -119,7 +121,7 @@ function build({ api, outPath, outName, cutOff = "" }) {
     );
     out.write(
       `apiFetch.${camelize(
-        `${method.toLowerCase()}_${url}`
+        `${method.toLowerCase()}_${cutUrl}`
       )} = (params={}) => {\n ${funStr} \n}; \n`
     );
   }
