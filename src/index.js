@@ -48,6 +48,7 @@ program
         api: files.apiFileData,
         outPath: paths.outPath,
         outName: files.dtaConfigData.outName,
+        axiosPath: files.dtaConfigData.axiosFile,
         cutOff: files.dtaConfigData.cutOff
       });
     }
