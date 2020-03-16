@@ -9,6 +9,9 @@ const index = require("../constants/index");
 const transform = require("./transform");
 const chalk = require("chalk");
 const { isEmptyParam } = require("./verifyConfig");
+const { compare } = require("../src/compare");
+const fs = require("fs-extra");
+const path = require("path");
 
 shell.config.silent = true;
 
@@ -54,7 +57,15 @@ program
   .command("view")
   .description("查看本次更新接口")
   .action(() => {
-    console.log("view");
+    const result = compare({
+      benchmarkApi: fs.readJSONSync(
+        path.resolve(paths.apiPath, paths.meetApiFiles[1])
+      ),
+      compareApi: fs.readJSONSync(
+        path.resolve(paths.apiPath, paths.meetApiFiles[0])
+      )
+    });
+    console.log(result);
   });
 
 program
