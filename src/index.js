@@ -12,6 +12,7 @@ const { isEmptyParam } = require("./verifyConfig");
 const { compare } = require("../src/compare");
 const fs = require("fs-extra");
 const path = require("path");
+const { madeChangeMd } = require("./formate");
 
 shell.config.silent = true;
 
@@ -66,6 +67,12 @@ program
       )
     });
     console.log(result);
+    madeChangeMd({
+      changeData: result,
+      benchmarkName: paths.meetApiFiles[1],
+      compareName: paths.meetApiFiles[0],
+      outPath: paths.outPath
+    });
   });
 
 program

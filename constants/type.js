@@ -16,10 +16,17 @@ const innerTypeList = {
   5: "Mixed"
 };
 
+// 请求参数是否必传
+const mustType = {
+  1: "Y",
+  0: "N"
+};
+
 const configName = "dtaConfig.json";
 
 module.exports = {
   typeList,
   configName,
-  innerTypeList
+  innerTypeList,
+  mustType
 };
