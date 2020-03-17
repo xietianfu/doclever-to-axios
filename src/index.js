@@ -66,7 +66,6 @@ program
         path.resolve(paths.apiPath, paths.meetApiFiles[0])
       )
     });
-    console.log(result);
     madeChangeMd({
       changeData: result,
       benchmarkName: paths.meetApiFiles[1],
