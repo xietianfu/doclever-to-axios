@@ -56,11 +56,30 @@ async function initConfig() {
       message: "忽略的url前缀"
     }
   ]);
+  result.benchmark = "";
   fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), result, {
     spaces: "\n"
   });
   return result;
 }
+
+async function setBenchmark() {
+  let { dtaConfigData } = files;
+  let { meetApiFiles } = paths;
+  const result = await inquirer.prompt({
+    type: "list",
+    name: "benchmark",
+    message: "请设定一个开发的基准版本:",
+    choices: meetApiFiles
+  });
+  console.log(files);
+  dtaConfigData.benchmark = result.benchmark;
+  fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), dtaConfigData, {
+    spaces: "\n"
+  });
+}
+
+function clearApiFile() {}
 
 async function setDownPath() {
   let globalConfigData = { ...files.globalConfigData };
@@ -90,5 +109,6 @@ async function setDownPath() {
 
 module.exports = {
   initConfig,
-  setDownPath
+  setDownPath,
+  setBenchmark
 };

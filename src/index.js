@@ -13,6 +13,7 @@ const { compare } = require("../src/compare");
 const fs = require("fs-extra");
 const path = require("path");
 const { madeChangeMd } = require("./formate");
+const { initConfig, setDownPath, setBenchmark } = require("./initConfig");
 
 shell.config.silent = true;
 
@@ -22,7 +23,6 @@ program
   .command("init")
   .description("生成基础配置文件")
   .action(() => {
-    const { initConfig } = require("./initConfig");
     initConfig();
   });
 
@@ -30,8 +30,16 @@ program
   .command("setDir")
   .description("设置读取接口文件所在的目录")
   .action(path => {
-    const { setDownPath } = require("./initConfig");
     setDownPath();
+  });
+
+program
+  .command("setBen")
+  .description("为新下载的接口设置一个参考文件,用以获取接口变化")
+  .action(path => {
+    if (!isEmptyParam(files.dtaConfigData, "未找到相关api生成配置")) {
+      setBenchmark().then(res => console.log(chalk.green("参考文件设置成功")));
+    }
   });
 
 program
@@ -49,6 +57,7 @@ program
         api: files.apiFileData,
         outPath: paths.outPath,
         outName: files.dtaConfigData.outName,
+        axiosPath: files.dtaConfigData.axiosFile,
         cutOff: files.dtaConfigData.cutOff
       });
     }
@@ -60,7 +69,7 @@ program
   .action(() => {
     const result = compare({
       benchmarkApi: fs.readJSONSync(
-        path.resolve(paths.apiPath, paths.meetApiFiles[1])
+        path.resolve(paths.apiPath, files.dtaConfigData.benchmark)
       ),
       compareApi: fs.readJSONSync(
         path.resolve(paths.apiPath, paths.meetApiFiles[0])

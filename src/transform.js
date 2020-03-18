@@ -61,7 +61,7 @@ function getQueryNoteList(params, name = "params", result = "") {
   return data;
 }
 
-function build({ api, outPath, outName, cutOff = "" }) {
+function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
   // 取得api接口数据
   let apiData = api.data;
   // 删除回收站
@@ -70,8 +70,10 @@ function build({ api, outPath, outName, cutOff = "" }) {
   let out = fs.createWriteStream(path.resolve(outPath, outName), {
     encoding: "utf8"
   });
+  console.log(outPath, axiosPath);
   // // 定义api接口
-  out.write("// 引入模块 \n import { axios } from './index'; \n");
+  out.write("// 引入模块 \n");
+  out.write(`import axios from "${path.relative(outPath, axiosPath)}";\n`);
   out.write("// 定义api接口 \n");
   out.write("export const apiFetch = {}; \n \n");
 
