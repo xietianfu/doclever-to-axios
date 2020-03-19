@@ -26,4 +26,3 @@ yarn-error.log*
 test.json
 api.js
 dtaConfig.json
-globalConfig.json
