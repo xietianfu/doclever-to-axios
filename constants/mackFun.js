@@ -113,7 +113,6 @@ function getQuery(method, param) {
 function writeApi(api) {
   // 写入api接口部分
   const { name, remark, url, method, param } = api;
-  console.log(api);
   let newName = url.split("/");
 }
 

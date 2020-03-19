@@ -8,6 +8,17 @@ function camelize(str) {
   });
 }
 
+function isBasePath(path) {
+  if (path === "/") {
+    return true;
+  } else if (/^[A-Z]:\\$/.test(path)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 module.exports = {
-  camelize
+  camelize,
+  isBasePath
 };

@@ -2,11 +2,12 @@ const path = require("path");
 const fs = require("fs-extra");
 const shell = require("shelljs");
 const { configName } = require("./type");
+const { isBasePath } = require("../utils");
 
 shell.config.silent = true;
 
 /**  项目根目录 */
-const appDirectory = path.join(process.mainModule.path, "..");
+const appDirectory = path.join(__dirname, "..");
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 /**
@@ -16,7 +17,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 function getConfig() {
   const runPath = shell.pwd().stdout;
   let filePath = shell.ls(configName);
-  while (filePath.stderr && shell.pwd().stdout !== "/") {
+  while (filePath.stderr && !isBasePath(shell.pwd().stdout)) {
     shell.cd("..");
     filePath = shell.find(configName);
   }
@@ -58,6 +59,7 @@ function getApiFileData() {
     // console.log("err");
   }
   shell.cd(runPath);
+  // console.log(file);
   return file;
 }
 

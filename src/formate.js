@@ -135,7 +135,6 @@ function madeChangeMd({
     if (queryParam.length > 0) {
       doc.write(`| 参数名称 | 是否必传 | 参数说明 | \n`);
       doc.write(`| :------| :------| :------| \n`);
-      console.log(queryParam);
       queryParam.forEach(item => {
         doc.write(
           `| ${item.name} | ${mustType[item.must]} | ${item.remark} | \n`

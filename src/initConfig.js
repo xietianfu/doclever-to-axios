@@ -72,7 +72,6 @@ async function setBenchmark() {
     message: "请设定一个开发的基准版本:",
     choices: meetApiFiles
   });
-  console.log(files);
   dtaConfigData.benchmark = result.benchmark;
   fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), dtaConfigData, {
     spaces: "\n"

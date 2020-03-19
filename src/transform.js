@@ -70,7 +70,6 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
   let out = fs.createWriteStream(path.resolve(outPath, outName), {
     encoding: "utf8"
   });
-  console.log(outPath, axiosPath);
   // // 定义api接口
   out.write("// 引入模块 \n");
   out.write(`import axios from "${path.relative(outPath, axiosPath)}";\n`);

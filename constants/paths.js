@@ -4,7 +4,7 @@ const shell = require("shelljs");
 const { configName } = require("./type");
 const { dtaConfigData } = require("./files");
 /**  项目根目录 */
-const appDirectory = path.join(process.mainModule.path, "..");
+const appDirectory = path.join(__dirname, "..");
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 function getConfigPath(name) {
