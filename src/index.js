@@ -60,6 +60,7 @@ program
         axiosPath: files.dtaConfigData.axiosFile,
         cutOff: files.dtaConfigData.cutOff
       });
+      console.log(chalk.green("接口函数生成成功"));
     }
   });
 
@@ -81,6 +82,7 @@ program
       compareName: paths.meetApiFiles[0],
       outPath: paths.outPath
     });
+    console.log(chalk.green("接口变更文档生成成功"));
   });
 
 program
