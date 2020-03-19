@@ -25,10 +25,10 @@
 
 ```bash
 # yarn
-yarn global add docLever-to-axios
+yarn global add doclever-to-axios
 
 # npm
-npm i -g docLever-to-axios
+npm i -g doclever-to-axios
 ```
 
 ## 使用
