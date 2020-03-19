@@ -17,7 +17,7 @@ const { initConfig, setDownPath, setBenchmark } = require("./initConfig");
 
 shell.config.silent = true;
 
-program.version("1.0.2");
+program.version("1.0.3");
 
 program
   .command("init")
