@@ -70,9 +70,9 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
   let out = fs.createWriteStream(path.resolve(outPath, outName), {
     encoding: "utf8"
   });
-  // // 定义api接口
+  // 定义api接口
   out.write("// 引入模块 \n");
-  out.write(`import axios from "${path.relative(outPath, axiosPath)}";\n`);
+  out.write(`import axios from "./${path.relative(outPath, axiosPath)}";\n`);
   out.write("// 定义api接口 \n");
   out.write("export const apiFetch = {}; \n \n");
 
