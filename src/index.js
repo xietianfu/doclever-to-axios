@@ -17,7 +17,7 @@ const { initConfig, setDownPath, setBenchmark } = require("./initConfig");
 
 shell.config.silent = true;
 
-program.version("1.0.4");
+program.version("1.1.0");
 
 program
   .command("init")
@@ -29,16 +29,18 @@ program
 program
   .command("setDir")
   .description("设置读取接口文件所在的目录")
-  .action(path => {
+  .action((path) => {
     setDownPath();
   });
 
 program
   .command("setBen")
   .description("为新下载的接口设置一个参考文件,用以获取接口变化")
-  .action(path => {
+  .action((path) => {
     if (!isEmptyParam(files.dtaConfigData, "未找到相关api生成配置")) {
-      setBenchmark().then(res => console.log(chalk.green("参考文件设置成功")));
+      setBenchmark().then((res) =>
+        console.log(chalk.green("参考文件设置成功"))
+      );
     }
   });
 
@@ -58,7 +60,7 @@ program
         outPath: paths.outPath,
         outName: files.dtaConfigData.outName,
         axiosPath: files.dtaConfigData.axiosFile,
-        cutOff: files.dtaConfigData.cutOff
+        cutOff: files.dtaConfigData.cutOff,
       });
       console.log(chalk.green("接口函数生成成功"));
     }
@@ -74,13 +76,13 @@ program
       ),
       compareApi: fs.readJSONSync(
         path.resolve(paths.apiPath, paths.meetApiFiles[0])
-      )
+      ),
     });
     madeChangeMd({
       changeData: result,
       benchmarkName: paths.meetApiFiles[1],
       compareName: paths.meetApiFiles[0],
-      outPath: paths.outPath
+      outPath: paths.outPath,
     });
     console.log(chalk.green("接口变更文档生成成功"));
   });
@@ -88,7 +90,7 @@ program
 program
   .command("config <file>")
   .description("查看文件的各种配置")
-  .action(file => {
+  .action((file) => {
     console.log({ files, paths, type, index }[file]);
   });
 
