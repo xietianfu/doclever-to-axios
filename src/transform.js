@@ -7,7 +7,7 @@ const path = require("path");
  * @param {string} str 传入字符串
  */
 function camelize(str) {
-  return str.replace(/[-_/\s]+(.)?/g, function (match, c) {
+  return str.replace(/[-._/\s]+(.)?/g, function (match, c) {
     return c ? c.toUpperCase() : "";
   });
 }
@@ -67,7 +67,7 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
   // 删除回收站
   apiData = apiData.filter((item) => item.name !== "#回收站");
 
-  let out = fs.createWriteStream(path.resolve(outPath, outName), {
+  let out = fs.createWriteStream(`${path.resolve(outPath, outName)}.js`, {
     encoding: "utf8",
   });
   // 定义api接口
