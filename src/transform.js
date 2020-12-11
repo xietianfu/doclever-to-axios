@@ -7,7 +7,7 @@ const path = require("path");
  * @param {string} str 传入字符串
  */
 function camelize(str) {
-  return str.replace(/[-_/\s]+(.)?/g, function(match, c) {
+  return str.replace(/[-_/\s]+(.)?/g, function (match, c) {
     return c ? c.toUpperCase() : "";
   });
 }
@@ -65,16 +65,15 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
   // 取得api接口数据
   let apiData = api.data;
   // 删除回收站
-  apiData = apiData.filter(item => item.name !== "#回收站");
+  apiData = apiData.filter((item) => item.name !== "#回收站");
 
   let out = fs.createWriteStream(path.resolve(outPath, outName), {
-    encoding: "utf8"
+    encoding: "utf8",
   });
   // 定义api接口
   out.write("// 引入模块 \n");
   out.write(`import axios from "./${path.relative(outPath, axiosPath)}";\n`);
   out.write("// 定义api接口 \n");
-  out.write("export const apiFetch = {}; \n \n");
 
   /**
    * 写入Api
@@ -109,7 +108,7 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
         break;
     }
     // 过滤为空字段
-    query = query.filter(item => item.name !== "");
+    query = query.filter((item) => item.name !== "");
     // 构建请求参数注释
     const annotation = getQueryNoteList(query);
     // 写入函数注释
@@ -121,14 +120,14 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
         "*/\n"
     );
     out.write(
-      `apiFetch.${camelize(
+      `export function ${camelize(
         `${method.toLowerCase()}_${cutUrl}`
       )} = (params={}) => {\n ${funStr} \n}; \n`
     );
   }
 
   function writeTitle(apiData = []) {
-    apiData.forEach(item => {
+    apiData.forEach((item) => {
       // 有url说明对象时一个接口，不是一个文件夹层级
       if (item.url) {
         writeApi(item);
@@ -147,5 +146,5 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
 }
 
 module.exports = {
-  build
+  build,
 };
