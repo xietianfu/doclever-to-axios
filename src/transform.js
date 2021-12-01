@@ -122,14 +122,14 @@ function build({ api, outPath, outName, axiosPath, cutOff = "" }) {
     out.write(
       `export function ${camelize(
         `${method.toLowerCase()}_${cutUrl}`
-      )} = (params={}) => {\n ${funStr} \n}; \n`
+      )} (params={}) {\n ${funStr} \n}; \n`
     );
   }
 
   function writeTitle(apiData = []) {
     apiData.forEach((item) => {
-      // 有url说明对象时一个接口，不是一个文件夹层级
-      if (item.url) {
+      // 有url说明对象时一个接口，不是一个文件夹层级,且未废弃
+      if (item.url && item.finish !== 2) {
         writeApi(item);
       } else {
         // 写入页面标题部分

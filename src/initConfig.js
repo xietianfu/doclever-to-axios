@@ -11,54 +11,59 @@ const reg = /(node_modules|.git)/;
 async function initConfig() {
   const result = await inquirer.prompt([
     {
+      type: "confirm",
+      name: "useTs",
+      message: "接口使用typescript的方式",
+    },
+    {
       type: "input",
       name: "downPath",
       message: "需要执行的api文件的存放路径",
-      default: files.globalConfigData.downPath
+      default: files.globalConfigData.downPath,
     },
     {
       type: "input",
       name: "name",
-      message: "api文件名称,注意需要填写json后缀与重复下载的标号"
+      message: "api文件名称,注意需要填写json后缀与重复下载的标号",
     },
     {
       type: "fuzzypath",
       name: "axiosFile",
-      excludePath: nodePath => nodePath.startsWith("./"),
-      excludeFilter: nodePath =>
+      excludePath: (nodePath) => nodePath.startsWith("./"),
+      excludeFilter: (nodePath) =>
         /(node_modules|\.git|.md$|.json$|.lock$)/.test(nodePath),
       itemType: "file",
       rootPath: paths.runPath,
       message: "自定义后的axios配置文件:",
       suggestOnly: false,
-      depthLimit: 10
+      depthLimit: 10,
     },
     {
       type: "fuzzypath",
       name: "outPath",
-      excludePath: nodePath => nodePath.startsWith("./"),
-      excludeFilter: nodePath => reg.test(nodePath),
+      excludePath: (nodePath) => nodePath.startsWith("./"),
+      excludeFilter: (nodePath) => reg.test(nodePath),
       itemType: "directory",
       rootPath: paths.runPath,
       message: "选择api文件需要生成的目录:",
       suggestOnly: false,
-      depthLimit: 10
+      depthLimit: 10,
     },
     {
       type: "input",
       name: "outName",
       message: "自定义的生成的api文件名称",
-      default: "api.js"
+      default: "api.js",
     },
     {
       type: "input",
       name: "cutOff",
-      message: "忽略的url前缀"
-    }
+      message: "忽略的url前缀",
+    },
   ]);
   result.benchmark = "";
   fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), result, {
-    spaces: "\n"
+    spaces: "\n",
   });
   return result;
 }
@@ -70,11 +75,11 @@ async function setBenchmark() {
     type: "list",
     name: "benchmark",
     message: "请设定一个开发的基准版本:",
-    choices: meetApiFiles
+    choices: meetApiFiles,
   });
   dtaConfigData.benchmark = result.benchmark;
   fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), dtaConfigData, {
-    spaces: "\n"
+    spaces: "\n",
   });
 }
 
@@ -87,7 +92,7 @@ async function setDownPath() {
     type: "input",
     name: "downPath",
     message: "设置全局的下载地址: ",
-    validate: function(input) {
+    validate: function (input) {
       // Declare function as asynchronous, and save the done callback
       var done = this.async();
 
@@ -99,7 +104,7 @@ async function setDownPath() {
       }
       // Pass the return value in the done callback
       done(null, true);
-    }
+    },
   });
   globalConfigData.downPath = result;
   fs.writeJSON(paths.globalConfig, result, { spaces: "\n" });
@@ -109,5 +114,5 @@ async function setDownPath() {
 module.exports = {
   initConfig,
   setDownPath,
-  setBenchmark
+  setBenchmark,
 };

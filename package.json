@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "init": "dta init",
-    "setDir": "dta setDir",
-    "start": "dta start"
+    "init": "dtu init",
+    "setDir": "dtu setDir",
+    "start": "dtu start"
   },
   "bin": {
-    "dta": "src/index.js"
+    "dtu": "src/index.js"
   },
   "repository": {
     "type": "git",
