@@ -69,7 +69,7 @@ async function initConfig() {
 }
 
 async function setBenchmark() {
-  let { dtaConfigData } = files;
+  let { apiConfig } = files;
   let { meetApiFiles } = paths;
   const result = await inquirer.prompt({
     type: "list",
@@ -77,8 +77,8 @@ async function setBenchmark() {
     message: "请设定一个开发的基准版本:",
     choices: meetApiFiles,
   });
-  dtaConfigData.benchmark = result.benchmark;
-  fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), dtaConfigData, {
+  apiConfig.benchmark = result.benchmark;
+  fs.writeJSON(path.join(paths.runPath, "dtaConfig.json"), apiConfig, {
     spaces: "\n",
   });
 }

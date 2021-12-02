@@ -8,7 +8,7 @@ shell.config.silent = true;
 
 /**  项目根目录 */
 const appDirectory = path.join(__dirname, "..");
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 /**
  * 获取项目的配置文件
@@ -23,9 +23,9 @@ function getConfig() {
   }
 
   if (!filePath.stderr) {
-    let dtaConfigData = fs.readJSONSync(configName);
+    let apiConfig = fs.readJSONSync(configName);
     shell.cd(runPath);
-    return dtaConfigData;
+    return apiConfig;
   } else {
     shell.cd(runPath);
     return undefined;
@@ -40,17 +40,17 @@ function getApiFileData() {
   const runPath = shell.pwd().stdout;
 
   let file = undefined;
-  if (dtaConfigData) {
-    const { downPath, name } = dtaConfigData;
+  if (apiConfig) {
+    const { downPath, name } = apiConfig;
     shell.cd(downPath);
     let results = shell.ls("-l", `./${name}*.json`);
     if (!results.stderr) {
       const detialFile = results.reduce((preFile, curFile) =>
-        preFile.birthtimeMs > curFile.birthtimeMs ? preFile : curFile
+        preFile.birthtimeMs > curFile.birthtimeMs ? preFile : curFile,
       );
       // note: 如果获取的api文件为空这里会报错,需要添加throws: false
       file = fs.readJSONSync(path.resolve(downPath, detialFile.name), {
-        throws: false
+        throws: false,
       });
     } else {
       // console.log(results.stderr);
@@ -63,12 +63,12 @@ function getApiFileData() {
   return file;
 }
 
-const dtaConfigData = getConfig();
+const apiConfig = getConfig();
 const apiFileData = getApiFileData();
 
 module.exports = {
-  dtaConfigData,
+  apiConfig,
   apiFileData,
   // note: 一旦出现某个模块被"循环加载"，就只输出已经执行的部分，还未执行的部分不会输出。所以获取不能使用`paths.root+....`
-  globalConfigData: fs.readJSONSync(resolveApp("globalConfig.json"))
+  globalConfigData: fs.readJSONSync(resolveApp("globalConfig.json")),
 };

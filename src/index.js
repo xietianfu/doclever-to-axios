@@ -14,6 +14,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const { madeChangeMd } = require("./formate");
 const { initConfig, setDownPath, setBenchmark } = require("./initConfig");
+const { buildApi } = require("./buildApi");
 
 shell.config.silent = true;
 
@@ -37,31 +38,43 @@ program.version("1.0.4");
 //   .command("setBen")
 //   .description("为新下载的接口设置一个参考文件,用以获取接口变化")
 //   .action(path => {
-//     if (!isEmptyParam(files.dtaConfigData, "未找到相关api生成配置")) {
+//     if (!isEmptyParam(files.apiConfig, "未找到相关api生成配置")) {
 //       setBenchmark().then(res => console.log(chalk.green("参考文件设置成功")));
 //     }
 //   });
 
+// program
+//   .command("start")
+//   .description("执行接口生成")
+//   .action(() => {
+//     if (isEmptyParam(files.apiConfig, "未找到相关api生成配置")) {
+//     } else if (
+//       isEmptyParam(files.apiFileData, "未找到api生成所需的json文件") &&
+//       isEmptyParam(paths.outPath, "api生成目录未配置") &&
+//       isEmptyParam(files.apiConfig.outName, "生成的api名称未配置")
+//     ) {
+//     } else {
+//       transform.build({
+//         api: files.apiFileData,
+//         outPath: paths.outPath,
+//         outName: files.apiConfig.outName,
+//         axiosPath: files.apiConfig.axiosFile,
+//         cutOff: files.apiConfig.cutOff,
+//       });
+//       console.log(chalk.green("接口函数生成成功"));
+//     }
+//   });
 program
   .command("start")
-  .description("执行接口生成")
-  .action(() => {
-    if (isEmptyParam(files.dtaConfigData, "未找到相关api生成配置")) {
-    } else if (
-      isEmptyParam(files.apiFileData, "未找到api生成所需的json文件") &&
-      isEmptyParam(paths.outPath, "api生成目录未配置") &&
-      isEmptyParam(files.dtaConfigData.outName, "生成的api名称未配置")
-    ) {
-    } else {
-      transform.build({
-        api: files.apiFileData,
-        outPath: paths.outPath,
-        outName: files.dtaConfigData.outName,
-        axiosPath: files.dtaConfigData.axiosFile,
-        cutOff: files.dtaConfigData.cutOff,
-      });
-      console.log(chalk.green("接口函数生成成功"));
-    }
+  .description("执行DOCLever到umi操作的全套流程")
+  .action((path) => {});
+
+program
+  .command("api")
+  .description("执行DOCLever到umi项目的api")
+  .action((path) => {
+    // console.log(files);
+    buildApi();
   });
 
 // program
@@ -70,7 +83,7 @@ program
 //   .action(() => {
 //     const result = compare({
 //       benchmarkApi: fs.readJSONSync(
-//         path.resolve(paths.apiPath, files.dtaConfigData.benchmark),
+//         path.resolve(paths.apiPath, files.apiConfig.benchmark),
 //       ),
 //       compareApi: fs.readJSONSync(
 //         path.resolve(paths.apiPath, paths.meetApiFiles[0]),
