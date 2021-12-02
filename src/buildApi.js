@@ -67,7 +67,6 @@ function build() {
   // { api, outPath, outName, axiosPath, cutOff = "" }
 
   const { apiConfig, apiFileData } = files;
-  console.log(apiConfig);
 
   const outPath = path.join(configLocation, apiConfig.exportApiFilePath);
   const outName = apiConfig.exportApiFileName;
@@ -84,6 +83,8 @@ function build() {
   });
   // 定义api接口
   out.write("// 引入模块 \n");
+  out.write("import { request } from 'umi'");
+
   out.write("// 定义api接口 \n");
 
   /**
@@ -99,6 +100,17 @@ function build() {
       const _cutOff = cutOff[cutOff.length - 1] === "/" ? cutOff : cutOff + "/";
       cutUrl = cutUrl.replace(_cutOff, "");
     }
+    console.log(url);
+    const matchUrlQuerys = url.match(/(?<={)(\w+)?(?=})/g);
+    cutUrl = cutUrl.replace(/{(\w+)?}/g, "$$$1");
+
+    console.log(matchUrlQuerys);
+    let urlQuerysStr = "const _params=params";
+    if (matchUrlQuerys) {
+      urlQuerysStr = `const {${matchUrlQuerys.join(
+        ",",
+      )},..._params}=params; \n`;
+    }
     // todo: 完成注释部分
     // 请求参数
     let query = [];
@@ -108,16 +120,31 @@ function build() {
       case "GET":
       case "DELETE":
         query = param[0].queryParam;
-        funStr = `return axios.${method.toLowerCase()}(\'${url}\',{params});`;
+        // funStr = `return axios.${method.toLowerCase()}(\`${url.replace(
+        //   /({(\w+)?})/g,
+        //   "$$$1",
+        // )}\`,{params:_params});`;
+        funStr = `return request(\`${url.replace(/({(\w+)?})/g, "$$$1")}\`,{
+          method: '${method}',
+          params:_params,
+        })`;
         break;
       case "POST":
       case "PUT":
         const rawJSON = param[0].bodyInfo.rawJSON;
         query = rawJSON ? rawJSON : [];
-        funStr = `return axios.${method.toLowerCase()}(\'${url}\',params);`;
+        // funStr = `return axios.${method.toLowerCase()}(\'${url.replace(
+        //   /({(\w+)?})/g,
+        //   "$$$1",
+        // )}\',_params);`;
+        funStr = `return request(\`${url.replace(/({(\w+)?})/g, "$$$1")}\`,{
+          method: '${method}',
+          data:_params,
+        })`;
       default:
         break;
     }
+
     // 过滤为空字段
     query = query.filter((item) => item.name !== "");
     // 构建请求参数注释
@@ -133,7 +160,9 @@ function build() {
     out.write(
       `export function ${camelize(
         `${method.toLowerCase()}_${cutUrl}`,
-      )} (params={}) {\n ${funStr} \n}; \n`,
+      )} (params) {\n
+        ${urlQuerysStr}
+        ${funStr} \n}; \n`,
     );
   }
 
