@@ -104,7 +104,6 @@ function build() {
     const matchUrlQuerys = url.match(/(?<={)(\w+)?(?=})/g);
     cutUrl = cutUrl.replace(/{(\w+)?}/g, "$$$1");
 
-    console.log(matchUrlQuerys);
     let urlQuerysStr = "const _params=params";
     if (matchUrlQuerys) {
       urlQuerysStr = `const {${matchUrlQuerys.join(
@@ -152,7 +151,7 @@ function build() {
     // 写入函数注释
     out.write(
       "\n/** \n" +
-        `* ${method}--${name}\n` +
+        `* ${method}--${name}(${url})\n` +
         "* @param {Object} params -请求对象 \n" +
         annotation +
         "*/\n",

@@ -15,6 +15,7 @@ const path = require("path");
 const { madeChangeMd } = require("./formate");
 const { initConfig, setDownPath, setBenchmark } = require("./initConfig");
 const { buildApi } = require("./buildApi");
+const { buildApiNameSpace } = require("./nameSpace");
 
 shell.config.silent = true;
 
@@ -75,6 +76,13 @@ program
   .action((path) => {
     // console.log(files);
     buildApi();
+  });
+
+program
+  .command("ns")
+  .description("执行DOCLever生成nameSpace")
+  .action((path) => {
+    buildApiNameSpace();
   });
 
 // program
