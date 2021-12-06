@@ -87,6 +87,8 @@ function build() {
 
   out.write("// 定义api接口 \n");
 
+  let haveWirteApiCode = true;
+
   /**
    * 写入Api
    * @param {object} api
@@ -95,12 +97,24 @@ function build() {
   function writeApi(api) {
     // 写入api接口部分
     let { name, remark, url = "", method, param } = api;
+
+    // 如果url没有使用/开头,提醒该接口
+    if (!/^\//g.test(url)) {
+      console.log(`${name}--${url}未在在接口添加前缀"\/",请补充!`);
+    }
+    if (!/^\/api/g.test(url)) {
+      haveWirteApiCode = false;
+      // console.log(`${name}--${url}未在在接口添加前缀"\/api",请补充!`);
+      url = "/api" + url;
+    }
+
+    // 如果url没有api前缀添加api前缀
+
     let cutUrl = url;
     if (cutOff) {
       const _cutOff = cutOff[cutOff.length - 1] === "/" ? cutOff : cutOff + "/";
       cutUrl = cutUrl.replace(_cutOff, "");
     }
-    console.log(url);
     const matchUrlQuerys = url.match(/(?<={)(\w+)?(?=})/g);
     cutUrl = cutUrl.replace(/{(\w+)?}/g, "$$$1");
 
@@ -182,6 +196,10 @@ function build() {
   }
 
   writeTitle(apiData);
+
+  if (!haveWirteApiCode) {
+    console.log('由于该项目未采用"/api"做为接口前缀,已添加');
+  }
 }
 
 module.exports = {

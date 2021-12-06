@@ -172,7 +172,6 @@ function buildApiNameSpace() {
   // 删除回收站
   apiData = apiData.filter((item) => item.name !== "#回收站");
 
-  console.log(outPath);
   let out = fs.createWriteStream(path.resolve(outPath, outName), {
     encoding: "utf8",
   });
@@ -181,7 +180,7 @@ function buildApiNameSpace() {
   apiData.forEach((item) => {
     const { url } = item;
     let cutUrl = url;
-    console.log(url);
+    // console.log(url);
 
     if (cutOff) {
       const _cutOff = cutOff[cutOff.length - 1] === "/" ? cutOff : cutOff + "/";
@@ -189,15 +188,15 @@ function buildApiNameSpace() {
     }
     out.write(`\n`);
     out.write(`// ${item.name}--${item.url} \n`);
-    out.write(
-      `export namespace ${item.method.toLowerCase()}${camelize(
-        url.replace(/({(\w+)?})/g, "$$$1"),
-      )} { \n`,
-    );
+    let funName = camelize(cutUrl);
+    funName = funName.replace(/{(\w+)?}/g, "$$$1");
+    out.write(`export namespace ${item.method}${funName} { \n`);
     writeQuery(item.param[0], item.method, out);
     wirteRes(item.param[0], out);
     out.write(`}\n`);
   });
+
+  console.log(`${outName}已在${outPath}生成.`);
 }
 
 module.exports = {
