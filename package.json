@@ -35,6 +35,6 @@
     "lodash.isempty": "^4.4.0",
     "module-alias": "^2.2.2",
     "ora": "^5.1.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.5"
   }
 }
